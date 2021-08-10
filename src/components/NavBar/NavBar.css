@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+header {
+  background-color: rgba(32, 32, 38, 0.8);
+  width: 100%;
+  position: fixed;
+  color: #fff;
+  z-index: 100;
+  padding: 1em 0;
+}
+
+.logo a {
+  font-family: 'Righteous', cursive;
+  font-size: clamp(2rem, 1.5vw, 3rem);
+  color: #fff;
+  margin-right: 1em;
+}
+
+.logo :hover {
+  color: rgb(230, 224, 224);
+}
+
+.container {
+  padding-left: 5em;
+  padding-right: 5em;
+  width: 100%;
+  align-items: center;
+}
+
+.menu {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nav_links ul li {
+  margin-left: 2em;
+}
+
+.nav_links .nav_link a {
+  color: #fff;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.nav_links .nav_link :hover {
+  color: rgb(230, 224, 224);
+}

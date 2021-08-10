@@ -10,7 +10,11 @@ const SingleContent = ({ id, poster, title, date, vote_average }) => {
         badgeContent={vote_average}
         color={vote_average > 6 ? 'primary' : 'secondary'}
       />
-      <img className="poster" src={`${img_300}/${poster}`} alt={unavailable} />
+      <img
+        className="poster"
+        src={poster ? `${img_300}/${poster}` : unavailable}
+        alt={title}
+      />
       <b className="title">{title}</b>
       <span className="subTitle">{date}</span>
     </ContentModal>

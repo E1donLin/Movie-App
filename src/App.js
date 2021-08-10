@@ -2,16 +2,15 @@ import { Container } from '@material-ui/core'
 import React from 'react'
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import './App.css'
-import Header from './components/Header/Header'
-import MainNav from './components/MainNav/MainNav'
 import Trending from './Pages/Trending/Trending'
 import Movies from './Pages/Movies/Movies'
 import Search from './Pages/Search/Search'
+import Navbar from './components/NavBar/NavBar'
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Header />
+      <Navbar />
       <div className="app">
         <Container>
           <Switch>
@@ -21,7 +20,6 @@ const App = () => {
           </Switch>
         </Container>
       </div>
-      <MainNav />
     </BrowserRouter>
   )
 }
