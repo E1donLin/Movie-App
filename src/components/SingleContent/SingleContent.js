@@ -15,8 +15,8 @@ const SingleContent = ({ id, poster, title, date, vote_average }) => {
         src={poster ? `${img_300}/${poster}` : unavailable}
         alt={title}
       />
-      <b className="title">{title}</b>
-      <span className="subTitle">{date}</span>
+      <h3 className="title">{title}</h3>
+      <p className="subTitle">{date}</p>
     </ContentModal>
   )
 }

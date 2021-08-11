@@ -13,22 +13,28 @@
 .app {
   background-color: rgb(38, 38, 45);
   color: white;
-  padding-top: 7em;
+  padding-top: 6em;
   padding-bottom: 3em;
-}
-
-.pageTitle {
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  font-weight: 300;
-  font-size: 3rem;
-  padding: 0.5em 0;
-  border-radius: 50px;
-  color: white;
+  min-height: 100vh;
 }
 
 .flex {
   display: flex;
   justify-content: space-between;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.content {
+  margin-top: 1.5em;
+}
+
+.container {
+  max-width: 1920px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 5em;
+  padding-left: 5em;
 }

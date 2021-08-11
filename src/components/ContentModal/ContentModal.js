@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
-import Fade from '@material-ui/core/Fade'
 import { fetchMovieDetails, fetchMovieVideos } from '../../service'
 import {
   img,
@@ -22,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   paper: {
+    position: 'absolute',
     width: '90%',
     height: '80%',
     backgroundColor: '#39445a',
@@ -29,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(1, 1, 3),
+  },
+  button: {
+    width: '20%',
+    margin: '0 auto',
   },
 }))
 
@@ -68,8 +72,6 @@ export default function ContentModal({ children, id }) {
         {children}
       </div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -79,55 +81,54 @@ export default function ContentModal({ children, id }) {
           timeout: 500,
         }}
       >
-        <Fade in={open}>
-          {details && (
-            <div className={classes.paper}>
-              <div className="ContentModal">
-                <img
-                  className="ContentModal__portrait"
-                  src={
-                    details.poster_path
-                      ? `${img_500}/${details.poster_path}`
-                      : unavailable
-                  }
-                  alt={details?.title}
-                />
-                <img
-                  className="ContentModal__landscape"
-                  src={
-                    details.backdrop_path
-                      ? `${img_500}/${details.backdrop_path}`
-                      : unavailableLandscape
-                  }
-                  alt={details?.title}
-                />
-                <div className="ContentModal__about">
-                  <span className="ContentModal__title">
-                    {details.title} (
-                    {(details.release_date || '-----').substring(0, 4)})
-                  </span>
-                  {details.tagline && (
-                    <i className="tagline">{details.tagline}</i>
-                  )}
-                  <span className="ContentModal__description">
-                    {details.overview}
-                  </span>
-                  <div></div>
+        {details && (
+          <div className={classes.paper}>
+            <div className="ContentModal">
+              <img
+                className="ContentModal__portrait"
+                src={
+                  details.poster_path
+                    ? `${img_500}/${details.poster_path}`
+                    : unavailable
+                }
+                alt={details?.title}
+              />
+              <img
+                className="ContentModal__landscape"
+                src={
+                  details.backdrop_path
+                    ? `${img_500}/${details.backdrop_path}`
+                    : unavailableLandscape
+                }
+                alt={details?.title}
+              />
+              <div className="ContentModal__about">
+                <span className="ContentModal__title">
+                  {details.title} (
+                  {(details.release_date || '-----').substring(0, 4)})
+                </span>
+                {details.tagline && (
+                  <i className="tagline">{details.tagline}</i>
+                )}
+                <span className="ContentModal__description">
+                  {details.overview}
+                </span>
+                <div></div>
 
-                  <Button
-                    variant="contained"
-                    startIcon={<YouTubeIcon />}
-                    color="secondary"
-                    target="__blank"
-                    href={`${youTubeUrl}${video}`}
-                  >
-                    Watch the Trailer
-                  </Button>
-                </div>
+                <Button
+                  className={classes.button}
+                  variant="contained"
+                  startIcon={<YouTubeIcon />}
+                  color="secondary"
+                  target="__blank"
+                  href={`${youTubeUrl}${video}`}
+                >
+                  Watch Trailer
+                </Button>
               </div>
             </div>
-          )}
-        </Fade>
+          </div>
+        )}
       </Modal>
     </>
   )

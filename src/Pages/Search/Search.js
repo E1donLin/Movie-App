@@ -1,11 +1,12 @@
 import { IconButton, InputAdornment, TextField } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
-import { ThemeProvider } from '@material-ui/styles'
+import { makeStyles, ThemeProvider } from '@material-ui/styles'
 import { useState } from 'react'
 import { createTheme } from '@material-ui/core'
 import { fetchSearch } from '../../service'
 import CustomPagination from '../../components/Pagination/CustomPagination'
 import SingleContent from '../../components/SingleContent/SingleContent'
+import './Search.css'
 
 const Search = () => {
   const [page, setPage] = useState(1)
@@ -22,6 +23,16 @@ const Search = () => {
       },
     },
   })
+
+  const useStyles = makeStyles({
+    search_bar: {
+      width: '40%',
+      display: 'block',
+      margin: '0 auto',
+    },
+  })
+
+  const classes = useStyles()
 
   const fetch = async () => {
     const data = await fetchSearch(page, searchText)
@@ -42,6 +53,7 @@ const Search = () => {
       <ThemeProvider theme={darkTheme}>
         <form onSubmit={handleSubmit}>
           <TextField
+            className={classes.search_bar}
             label="Search"
             variant="filled"
             fullWidth
@@ -58,7 +70,7 @@ const Search = () => {
           />
         </form>
       </ThemeProvider>
-      <div className="trending">
+      <div className="flex wrap content">
         {content &&
           content.map((c) => (
             <SingleContent

@@ -1,14 +1,11 @@
-import { Chip } from '@material-ui/core'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { fetchGenres } from '../../service'
+import './Genres.css'
 
-const Genres = ({
-  selectedGenres,
-  setSelectedGenres,
-  genres,
-  setGenres,
-  setPage,
-}) => {
+const Genres = ({ selectedGenre, setSelectedGenre, setPage }) => {
+  const [genres, setGenres] = useState([])
+  const [show, setShow] = useState(false)
+
   const fetch = async () => {
     const data = await fetchGenres()
     setGenres(data.genres)
@@ -16,47 +13,40 @@ const Genres = ({
 
   useEffect(() => {
     fetch()
-    return () => {
-      setGenres({})
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setGenres({})
   }, [])
 
-  const handleAdd = (genre) => {
-    setSelectedGenres([...selectedGenres, genre])
-    setGenres(genres.filter((g) => g.id !== genre.id))
+  const handleSelectedGenre = (genre) => {
+    setSelectedGenre(genre)
     setPage(1)
-  }
-
-  const handleRemove = (genre) => {
-    setSelectedGenres(selectedGenres.filter((g) => g.id !== genre.id))
-    setGenres([...genres, genre])
-    setPage(1)
+    setShow(false)
   }
 
   return (
-    <div style={{ padding: '6px 0' }}>
-      {selectedGenres &&
-        selectedGenres.map((genre) => (
-          <Chip
-            key={genre.id}
-            label={genre.name}
-            color="primary"
-            style={{ margin: 2 }}
-            clickable
-            onDelete={() => handleRemove(genre)}
-          />
-        ))}
-      {genres &&
-        genres.map((genre) => (
-          <Chip
-            key={genre.id}
-            label={genre.name}
-            style={{ margin: 2 }}
-            clickable
-            onClick={() => handleAdd(genre)}
-          />
-        ))}
+    <div className="genre_container">
+      <div className="dropdown">
+        <button className="btn" onClick={() => setShow(!show)}>
+          Genres
+          <span className="arrow"></span>
+        </button>
+        {selectedGenre && <h2 className="genre_title">{selectedGenre.name}</h2>}
+      </div>
+
+      {show && (
+        <div className="genre_menu">
+          <ul>
+            {genres.map((genre) => (
+              <button
+                key={genre.id}
+                className="genre"
+                onClick={() => handleSelectedGenre(genre)}
+              >
+                {genre.name}
+              </button>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }

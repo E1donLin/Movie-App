@@ -4,37 +4,31 @@ import { fetchMoviesByGenre } from '../../service'
 import SingleContent from '../../components/SingleContent/SingleContent'
 import CustomPagination from '../../components/Pagination/CustomPagination'
 import Genres from '../../components/Genres/Genres'
-import useGenre from '../../hooks/useGenre'
 
 const Movies = () => {
   const [page, setPage] = useState(1)
   const [content, setContent] = useState([])
   const [numOfPages, setNumOfPages] = useState()
-  const [selectedGenres, setSelectedGenres] = useState([])
-  const [genres, setGenres] = useState([])
-  const genreforUrl = useGenre(selectedGenres)
+  const [selectedGenre, setSelectedGenre] = useState('')
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await fetchMoviesByGenre(page, genreforUrl)
+      const data = await fetchMoviesByGenre(page, selectedGenre.id)
       setContent(data.results)
       setNumOfPages(data.total_pages)
     }
 
     fetch()
-  }, [page, genreforUrl])
+  }, [page, selectedGenre])
 
   return (
     <div>
-      <span className="pageTitle">Movies</span>
       <Genres
-        selectedGenres={selectedGenres}
-        genres={genres}
-        setGenres={setGenres}
-        setSelectedGenres={setSelectedGenres}
+        selectedGenre={selectedGenre}
+        setSelectedGenre={setSelectedGenre}
         setPage={setPage}
       />
-      <div className="trending">
+      <div className="flex wrap content">
         {content &&
           content.map((c) => (
             <SingleContent

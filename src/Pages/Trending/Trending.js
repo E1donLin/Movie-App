@@ -21,8 +21,8 @@ const Trending = () => {
 
   return (
     <div>
-      <span className="pageTitle">Trending</span>
-      <div className="trending">
+      <h2 className="pageTitle">Trending</h2>
+      <div className="flex wrap content">
         {content &&
           content.map((c) => (
             <SingleContent

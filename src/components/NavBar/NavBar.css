@@ -20,13 +20,6 @@ header {
   color: rgb(230, 224, 224);
 }
 
-.container {
-  padding-left: 5em;
-  padding-right: 5em;
-  width: 100%;
-  align-items: center;
-}
-
 .menu {
   align-items: center;
   display: flex;
