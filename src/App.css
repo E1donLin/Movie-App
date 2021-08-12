@@ -10,6 +10,12 @@
   font-family: 'Crimson+Pro', serif;
 }
 
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
 .app {
   background-color: rgb(38, 38, 45);
   color: white;

@@ -20,9 +20,8 @@
   border-radius: 5px;
   background-color: #000;
   color: #fff;
-  height: 5vh;
   font-size: 1.5rem;
-  padding: 0.875em 0.5em;
+  padding: 0.5em 0.5em;
 }
 
 .dropdown .btn:hover {

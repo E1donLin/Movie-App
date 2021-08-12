@@ -13,7 +13,7 @@ const useStyle = makeStyles({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    marginTop: 10,
+    marginTop: '2em',
   },
 })
 
