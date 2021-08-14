@@ -6,12 +6,26 @@ import Movies from './Pages/Movies/Movies'
 import Search from './Pages/Search/Search'
 import Navbar from './components/NavBar/NavBar'
 
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+  return null
+}
+
 const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
       <div className="app">
         <div className="container">
+          <ScrollToTop />
           <Switch>
             <Route path="/" component={Trending} exact />
             <Route path="/movies" component={Movies} />
