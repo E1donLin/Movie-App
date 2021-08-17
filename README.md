@@ -1,4 +1,4 @@
-# Movie Web: https://affectionate-curran-856664.netlify.app
+# Movie Web: https://dokimovie.netlify.app/
 
 #### The purpose of this project is to practice React.js and API fetching.
 
